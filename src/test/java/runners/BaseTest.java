@@ -20,7 +20,6 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
         String browser = ConfigReader.getBrowser();
         driver.set(WebDriverFactory.getDriver(browser));
         getDriver().get("https://www.saucedemo.com/");
