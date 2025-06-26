@@ -1,16 +1,11 @@
 package pages;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
-import java.time.Duration;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    WebDriver driver;
+
+    private final WebDriver driver;
 
     private final By usernameInput = By.cssSelector("#user-name");
     private final By passwordInput = By.cssSelector("#password");
@@ -22,18 +17,10 @@ public class LoginPage {
     }
 
     public void enterUsername(String username) {
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(500))
-                .ignoring(NoSuchElementException.class);
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
-        driver.findElement(usernameInput).clear();
         driver.findElement(usernameInput).sendKeys(username);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(passwordInput).clear();
         driver.findElement(passwordInput).sendKeys(password);
     }
 

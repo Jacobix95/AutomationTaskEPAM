@@ -2,37 +2,37 @@ package runners;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.*;
-import utils.ConfigReader;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import strategy.WebDriverFactory;
-
-import java.io.IOException;
+import utils.ConfigReader;
 
 public class BaseTest {
-    protected WebDriver driver;
-    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
-    @BeforeClass
-    public void setupClass() throws IOException {
-        WebDriverManager.chromedriver().setup();
+    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    public WebDriver getDriver() {
+        return driver.get();
     }
 
     @BeforeMethod
-    public void setUp() throws WebDriverException {
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
         String browser = ConfigReader.getBrowser();
-        driver = WebDriverFactory.getDriver(browser);
-        driver.get("https://www.saucedemo.com/");
+        driver.set(WebDriverFactory.getDriver(browser));
+        getDriver().get("https://www.saucedemo.com/");
         logger.info("Driver initialized and navigated to login page.");
     }
 
     @AfterMethod
-    public void tearDown() throws WebDriverException {
-        if (driver != null) {
-            driver.quit();
+    public void tearDown() {
+        if (getDriver() != null) {
+            getDriver().quit();
             logger.info("Driver quit successfully.");
+            driver.remove();
         }
     }
 }
