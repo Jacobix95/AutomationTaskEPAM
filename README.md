@@ -45,3 +45,10 @@ The framework supports **Chrome** and **Firefox**, includes **logging (SLF4J + L
 
    ```properties
    browser=chrome
+3. Run the tests
+
+**Command line:**
+
+```bash
+mvn  clean test
+```
