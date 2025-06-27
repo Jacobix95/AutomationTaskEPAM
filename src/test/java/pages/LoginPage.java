@@ -30,9 +30,6 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
-    public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
-    }
     public void clearUsername() {
         WebElement element = driver.findElement(usernameInput);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -41,5 +38,9 @@ public class LoginPage {
     public void clearPassword() {
         WebElement element = driver.findElement(passwordInput);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
+
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText();
     }
 }
