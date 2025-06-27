@@ -1,7 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage {
 
@@ -30,5 +32,14 @@ public class LoginPage {
 
     public String getErrorMessage() {
         return driver.findElement(errorMessage).getText();
+    }
+    public void clearUsername() {
+        WebElement element = driver.findElement(usernameInput);
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
+
+    public void clearPassword() {
+        WebElement element = driver.findElement(passwordInput);
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
 }

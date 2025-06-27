@@ -13,6 +13,10 @@ public class LoginTest extends BaseTest {
     @Test
     public void testEmptyCredentials_UC1() {
         LoginPage login = new LoginPage(getDriver());
+        login.enterUsername("testUser");
+        login.enterPassword("testPass");
+        login.clearUsername();
+        login.clearPassword();
         login.clickLogin();
         Assertions.assertThat(login.getErrorMessage()).isEqualTo(USERNAME_REQUIRED);
     }
@@ -21,6 +25,8 @@ public class LoginTest extends BaseTest {
     public void testUsernameOnly_UC2() {
         LoginPage login = new LoginPage(getDriver());
         login.enterUsername("standard_user");
+        login.enterPassword("anyPass");
+        login.clearPassword();
         login.clickLogin();
         Assertions.assertThat(login.getErrorMessage()).isEqualTo(PASSWORD_REQUIRED);
     }
