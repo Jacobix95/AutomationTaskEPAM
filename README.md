@@ -52,3 +52,4 @@ The framework supports **Chrome** and **Firefox**, includes **logging (SLF4J + L
 ```bash
 mvn  clean test
 ```
+# My solution branch
