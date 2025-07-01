@@ -21,7 +21,6 @@ public class BaseTest {
     public void setUp() {
         String browser = ConfigReader.getBrowser();
         driver.set(WebDriverFactory.getDriver(browser));
-        getDriver().get("https://www.saucedemo.com/");
         logger.info("Driver initialized and navigated to login page.");
     }
 

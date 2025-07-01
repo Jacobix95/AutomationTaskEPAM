@@ -12,7 +12,7 @@ public class ConfigReader {
             if (input != null) {
                 properties.load(input);
             } else {
-                throw new RuntimeException("config.properties file not found in classpath.");
+                throw new IllegalArgumentException("config.properties file not found in classpath.");
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to load config.properties file.", e);
@@ -25,5 +25,9 @@ public class ConfigReader {
 
     public static String getBrowser() {
         return properties.getProperty("browser", "chrome").toLowerCase();
+    }
+
+    public static String getBaseUrl() {
+        return properties.getProperty("baseUrl", "https://www.saucedemo.com/");
     }
 }

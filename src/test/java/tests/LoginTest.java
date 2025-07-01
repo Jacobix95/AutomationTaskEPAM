@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import runners.BaseTest;
+import utils.ConfigReader;
 
 import static utils.ErrorMessage.PASSWORD_REQUIRED;
 import static utils.ErrorMessage.USERNAME_REQUIRED;
@@ -12,6 +13,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void testEmptyCredentials_UC1() {
+        getDriver().get(ConfigReader.getBaseUrl());
+
         LoginPage login = new LoginPage(getDriver());
         login.enterUsername("testUser");
         login.enterPassword("testPass");
@@ -23,6 +26,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void testUsernameOnly_UC2() {
+        getDriver().get(ConfigReader.getBaseUrl());
+
         LoginPage login = new LoginPage(getDriver());
         login.enterUsername("standard_user");
         login.enterPassword("anyPass");
@@ -33,6 +38,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void testValidCredentials_UC3() {
+        getDriver().get(ConfigReader.getBaseUrl());
+
         LoginPage login = new LoginPage(getDriver());
         login.enterUsername("standard_user");
         login.enterPassword("secret_sauce");
