@@ -47,3 +47,4 @@ public class LoginTest extends BaseTest {
         Assertions.assertThat(getDriver().getCurrentUrl()).contains("inventory");
     }
 }
+

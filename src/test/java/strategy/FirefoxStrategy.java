@@ -9,3 +9,4 @@ public class FirefoxStrategy implements BrowserStrategy {
         return new FirefoxDriver();
     }
 }
+

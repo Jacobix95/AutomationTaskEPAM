@@ -31,3 +31,4 @@ public class ConfigReader {
         return properties.getProperty("baseUrl", "https://www.saucedemo.com/");
     }
 }
+

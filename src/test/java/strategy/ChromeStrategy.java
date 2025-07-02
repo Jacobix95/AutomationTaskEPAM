@@ -9,3 +9,4 @@ public class ChromeStrategy implements BrowserStrategy {
         return new ChromeDriver();
     }
 }
+
