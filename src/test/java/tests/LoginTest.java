@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
         login.clearPassword();
         login.clickLogin();
         
-        //then
+        // then
         Assertions.assertThat(login.getErrorMessage()).isEqualTo(USERNAME_REQUIRED);
     }
 
@@ -55,7 +55,7 @@ public class LoginTest extends BaseTest {
         login.enterPassword("secret_sauce");
         login.clickLogin();
         
-        //then
+        // then
         Assertions.assertThat(getDriver().getCurrentUrl()).contains("inventory");
     }
 }
