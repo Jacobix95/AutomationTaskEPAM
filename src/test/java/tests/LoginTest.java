@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void testValidCredentials_UC3() {
-        //given
+        // given
         getDriver().get(ConfigReader.getBaseUrl());
         LoginPage login = new LoginPage(getDriver());
         
