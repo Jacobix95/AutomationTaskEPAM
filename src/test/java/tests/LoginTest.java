@@ -18,11 +18,7 @@ public class LoginTest extends BaseTest {
         LoginPage login = new LoginPage(getDriver());
 
         // when
-        login.enterUsername("testUser");
-        login.enterPassword("testPass");
-        login.clearUsername();
-        login.clearPassword();
-        login.clickLogin();
+        login.loginWithClearedUsernameAndPassword("testUser", "testPass");
         
         // then
         Assertions.assertThat(login.getErrorMessage()).isEqualTo(USERNAME_REQUIRED);
@@ -35,10 +31,7 @@ public class LoginTest extends BaseTest {
         LoginPage login = new LoginPage(getDriver());
 
         // when
-        login.enterUsername("standard_user");
-        login.enterPassword("anyPass");
-        login.clearPassword();
-        login.clickLogin();
+        login.loginWithClearedPassword("standard_user", "anyPass");
 
         // then
         Assertions.assertThat(login.getErrorMessage()).isEqualTo(PASSWORD_REQUIRED);
@@ -51,9 +44,7 @@ public class LoginTest extends BaseTest {
         LoginPage login = new LoginPage(getDriver());
         
         // when
-        login.enterUsername("standard_user");
-        login.enterPassword("secret_sauce");
-        login.clickLogin();
+        login.loginAs("standard_user", "secret_sauce");
         
         // then
         Assertions.assertThat(getDriver().getCurrentUrl()).contains("inventory");

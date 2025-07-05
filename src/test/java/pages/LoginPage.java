@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class LoginPage {
 
@@ -18,30 +15,57 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public void enterUsername(String username) {
+    public void loginAs(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+
+    }
+
+    public void loginWithClearedUsernameAndPassword(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clearUsername();
+        clearPassword();
+        clickLogin();
+
+    }
+
+    public void loginWithClearedPassword(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clearPassword();
+        clickLogin();
+    }
+
+    public String getErrorMessage() {
+        try {
+            return driver.findElement(errorMessage).getText();
+        } catch (NoSuchElementException e) {
+            return "";
+        }
+    }
+
+    private void enterUsername(String username) {
         driver.findElement(usernameInput).sendKeys(username);
     }
 
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
 
-    public void clickLogin() {
+    private void clickLogin() {
         driver.findElement(loginButton).click();
     }
 
-    public void clearUsername() {
+    private void clearUsername() {
         WebElement element = driver.findElement(usernameInput);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
 
-    public void clearPassword() {
+    private void clearPassword() {
         WebElement element = driver.findElement(passwordInput);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-    }
-
-    public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
     }
 }
 
